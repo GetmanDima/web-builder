@@ -1,7 +1,9 @@
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from "@nestjs/common";
-import {NestExpressApplication} from "@nestjs/platform-express";
+import { ValidationPipe } from '@nestjs/common';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app/app.module';
+import { RMQModule } from './rmq/rmq.module';
 
 async function bootstrap() {
   const PORT = process.env.PORT || 5000;
@@ -11,14 +13,34 @@ async function bootstrap() {
 
     app.useGlobalPipes(new ValidationPipe());
 
-    app.enableCors()
+    app.enableCors();
 
     await app.listen(PORT, () => {
-      console.log(`Server started on port ${PORT}`)
+      console.log(`Server started on port ${PORT}`);
     });
-  } catch(e) {
+  } catch (e) {
     console.log(e);
   }
 }
 
+async function bootstrapRMQ() {
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+    RMQModule,
+    {
+      transport: Transport.RMQ,
+      options: {
+        urls: ['amqp://localhost:5672'],
+        queue: 'code_queue',
+        queueOptions: {
+          durable: false,
+        },
+      },
+    },
+  );
+
+  await app.listen();
+  console.log(`RabbitMQ connected`);
+}
+
+bootstrapRMQ();
 bootstrap();

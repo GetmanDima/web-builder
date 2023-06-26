@@ -5,6 +5,7 @@ import { setDb } from "@entities/Db/model/dbReducer";
 import { setFront } from "@entities/Front/model/frontReducer";
 import { setCurrProjectId } from "@entities/Project/model/projectReducer";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
+import { serverUrl } from "@shared/constant";
 
 export interface CreateProjectRequest {
   name: string;
@@ -47,10 +48,9 @@ export interface UpdateConfigRequest {
 export const projectAPI = createApi({
   reducerPath: "projectAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000",
+    baseUrl: serverUrl,
     prepareHeaders(headers, { getState }) {
       const state = getState() as RootState;
-      console.debug("state", state);
       headers.set("Authorization", `Bearer ${state.user.token}`);
       return headers;
     },

@@ -1,14 +1,15 @@
-import { Dependencies, Injectable } from '@nestjs/common';
+import { Dependencies, Inject, Injectable } from '@nestjs/common';
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { defaultApiConfig, defaultDbConfig, defaultFrontConfig } from 'src/shared/constant';
+import { defaultApiConfig, defaultDbConfig, defaultFrontConfig } from 'src/projects/constant';
 import { CreateProjectDto, UpdateFrontendConfigDto, UpdateApiConfigDto, UpdateDbConfigDto, UpdateProjectDto } from "./dto/projects.dto";
 import { Project } from "./schemas/project.schema";
+import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 @Dependencies([getModelToken(Project.name)])
 export class ProjectsService {
-  constructor(private projectModel: Model<Project>) {
+  constructor(@Inject('CODE_SERVICE') private client: ClientProxy, private projectModel: Model<Project>) {
   }
 
   async getUserProjects(dto: {user: string}) {
@@ -89,6 +90,10 @@ export class ProjectsService {
       _id: project.id,
       dbConfig: dto.dbConfig
     }
+  }
+
+  async generateCode(projectId: string) {
+    this.client.emit('generate-code', {projectId});
   }
 }
 

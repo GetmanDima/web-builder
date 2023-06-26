@@ -43,7 +43,6 @@ export const ProjectForm = () => {
       .then((payload) => {
         setLoading(false);
         setSuccessVisible(true);
-        console.debug('ppp', payload);
         dispatch(addProject({
           id: payload.project._id,
           name,
@@ -51,7 +50,6 @@ export const ProjectForm = () => {
         }));
       })
       .catch((e) => {
-        console.debug(e);
         setLoading(false);
         setServerError("Произошла ошибка при создании проекта");
       });

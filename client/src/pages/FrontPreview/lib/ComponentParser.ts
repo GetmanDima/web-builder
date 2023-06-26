@@ -3,6 +3,7 @@ import { BasicElement, FrontConfig } from "@shared/model/type/front.type";
 import { BaseParser } from "./BaseParser";
 import { ElementParser } from "./ElementParser";
 import { getComponentNameById } from "./lib";
+import { serverUrl } from "@shared/constant";
 
 export class ComponentParser extends BaseParser {
   private elementParser: ElementParser;
@@ -166,16 +167,14 @@ export class ComponentParser extends BaseParser {
       })
       .join("\n");
 
-    console.debug("rm", body);
     return `
-      fetch("http://localhost:5000/projects/${this.projectId}/api", {
+      fetch("${serverUrl}/projects/${this.projectId}/api", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(${body})
       }).then((res) => res.json()).then((data) => {
-        console.debug(data);
         ${responseCode}
         ${successCode}
       })

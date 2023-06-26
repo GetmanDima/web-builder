@@ -55,9 +55,15 @@ export class ProjectsController {
   updateDbConfig(@Param('id') id: string, @Body() dto: UpdateDbConfigDto) {
     return this.projectsService.updateDbConfig(id, dto);
   }
-
+  
   @Post('/:id/api')
   previewApi(@Param('id') id: string, @Body() dto: any) {
     return this.previewApiService.previewApi(id, dto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('/:id/code')
+  generateCode(@Param('id') id: string) {
+    return this.projectsService.generateCode(id);
   }
 }

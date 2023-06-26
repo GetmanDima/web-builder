@@ -114,13 +114,17 @@ export const ServerRequestForm = ({
       </Group>
       {selectedRequest && (
         <>
-          <div className='mt-[30px] mb-[20px] text-center text-[15px]'>
-            Данные запроса
-          </div>
+          {paramComponents.length > 0 && (
+            <div className='mt-[30px] mb-[20px] text-center text-[15px]'>
+              Данные запроса
+            </div>
+          )}
           {paramComponents}
-          <div className='mt-[30px] mb-[20px] text-center text-[15px]'>
-            Данные ответа
-          </div>
+          {responseComponents.length > 0 && (
+            <div className='mt-[30px] mb-[20px] text-center text-[15px]'>
+              Данные ответа
+            </div>
+          )}
           {responseComponents}
           <div className='mt-[30px] mb-[20px] text-center text-[15px]'>
             Успешный запрос

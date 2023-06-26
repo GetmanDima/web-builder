@@ -4,14 +4,16 @@ import { AppConfigModule } from '../app-config/app-config.module';
 import { UsersModule } from '../users/users.module';
 import { AuthModule } from 'src/auth/auth.module';
 import { ProjectsModule } from 'src/projects/projects.module';
+import { FilesModule } from 'src/files/files.module';
 
 @Module({
   imports: [
     AppConfigModule,
-    MongooseModule.forRoot('mongodb://localhost/nest'),
+    MongooseModule.forRoot(process.env.MONGODB_CONNECTION),
     UsersModule,
     AuthModule,
-    ProjectsModule
+    ProjectsModule,
+    FilesModule
   ],
 })
 export class AppModule {}

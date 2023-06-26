@@ -33,7 +33,7 @@ export class PreviewApiService {
     const response = {};
 
     const mConnection = await mongoose.connect(
-      `mongodb://localhost:27017/project-${projectId}-db`,
+      `${process.env.MONGODB_PROJECTS_CONNECTION}/project-${projectId}-db`,
     );
 
     for (let i = 0; i < request.actions.length; i++) {

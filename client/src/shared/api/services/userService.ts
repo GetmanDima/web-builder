@@ -1,4 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
+import { serverUrl } from "@shared/constant";
 
 export interface LoginRequest {
   email: string,
@@ -16,7 +17,7 @@ export interface RegisterRequest {
 
 export const userAPI = createApi({
   reducerPath: 'userAPI',
-  baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5000'}),
+  baseQuery: fetchBaseQuery({baseUrl: serverUrl}),
   endpoints: (build) => ({
       login: build.mutation<LoginResponse, LoginRequest>({
           query: (data) => ({

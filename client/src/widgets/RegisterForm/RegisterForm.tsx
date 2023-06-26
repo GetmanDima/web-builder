@@ -52,7 +52,6 @@ export const RegisterForm = ({ className }: RegisterFormProps) => {
         setSuccessVisible(true);
       })
       .catch((e) => {
-        console.debug(e);
         setLoading(false);
         setServerError("Произошла ошибка при попытке регистрации");
       });

@@ -51,7 +51,6 @@ export const FrontPages = () => {
           setSelectedPageId(pageId);
         }}
         onOutClick={() => {
-          console.debug('pageId', pageId);
           dispatch(setCurrPageId(pageId));
           navigate(`/projects/${projectId}/pages/${pageId}/editor`);
         }}

@@ -1,17 +1,18 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument } from 'mongoose';
 
+const Types = mongoose.Schema.Types;
 export type UserDocument = HydratedDocument<User>;
 
 @Schema()
 export class User {
-  @Prop({isRequired: true})
+  @Prop({type: Types.String, isRequired: true})
   email: string;
 
-  @Prop({isRequired: true})
+  @Prop({type: Types.String, isRequired: true})
   password: string;
 
-  @Prop({isRequired: true})
+  @Prop({type: Types.String, isRequired: true})
   type: string;
 }
 

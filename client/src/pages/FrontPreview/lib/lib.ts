@@ -13,7 +13,6 @@ export function addAppScripts(config: any, projectId: string) {
   const parser = new FrontParser(config, projectId);
 
   const appScript = document.createElement('script');
-  console.debug(parser.parse());
   appScript.text = parser.parse();
   appScript.setAttribute('type', 'text/babel');
   appScript.setAttribute('data-type', 'module');

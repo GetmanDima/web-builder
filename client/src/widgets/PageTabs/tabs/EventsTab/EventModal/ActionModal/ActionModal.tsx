@@ -96,7 +96,7 @@ export const ActionModal = ({
   }
 
   return (
-    <Modal className='w-[600px]' {...props} closeModal={closeModal}>
+    <Modal className='w-[550px]' {...props} closeModal={closeModal}>
       <div className='w-full mt-[35px]'>
         <Group className='mb-[20px]'>
           <div className='mr-[20px] text-[16px]'>Тип действия</div>

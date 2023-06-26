@@ -54,7 +54,6 @@ export const LoginForm = ({ className }: LoginFormProps) => {
         navigate('/');
       })
       .catch((e) => {
-        console.debug(e);
         setLoading(false);
         setServerError("Произошла ошибка при попытке авторизации");
       });

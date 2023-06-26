@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "client": "npm start --prefix ./client",
-    "server": "npm run start:dev --prefix ./server"
+    "dev": "concurrently \"npm run server:start\" \"npm run client:start\"",
+    "build": "concurrently \"npm run server:build\" \"npm run client:build\"",
+    "client:start": "npm start --prefix ./client",
+    "server:start": "npm run start:dev --prefix ./server",
+    "client:build": "npm run build --prefix ./client",
+    "server:build": "npm run build ./server"
   },
   "author": "",
   "license": "ISC",

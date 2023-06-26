@@ -23,7 +23,6 @@ export const frontSlice = createSlice({
   initialState,
   reducers: {
     setFront(state, action: PayloadAction<FrontConfig>) {
-      console.debug('payload set', action.payload);
       const config = action.payload;
 
       state.globalState = config.globalState ?? {};
@@ -214,8 +213,6 @@ export const frontSlice = createSlice({
       const childIndex = parent.children.findIndex(
         (id) => id === childId
       );
-
-      console.debug(childIndex);
 
       if (childIndex === -1) {
         parent.children.push(childId);

@@ -28,7 +28,6 @@ export const Projects = () => {
         })));
       })
       .catch((e) => {
-        console.debug(e);
         setServerError("Произошла ошибка при получении проектов");
       });
   }, []);
