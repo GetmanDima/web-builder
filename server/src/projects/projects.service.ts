@@ -9,7 +9,7 @@ import { ClientProxy } from '@nestjs/microservices';
 @Injectable()
 @Dependencies([getModelToken(Project.name)])
 export class ProjectsService {
-  constructor(@Inject('CODE_SERVICE') private client: ClientProxy, private projectModel: Model<Project>) {
+  constructor(private projectModel: Model<Project>, @Inject('CODE_SERVICE') private client: ClientProxy) {
   }
 
   async getUserProjects(dto: {user: string}) {
