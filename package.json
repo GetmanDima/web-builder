@@ -5,15 +5,19 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"npm run server:start\" \"npm run client:start\"",
+    "prod": "concurrently \"npm run server:prod\" \"npm run client:prod\"",
     "build": "concurrently \"npm run server:build\" \"npm run client:build\"",
     "client:start": "npm start --prefix ./client",
     "server:start": "npm run start:dev --prefix ./server",
     "client:build": "npm run build --prefix ./client",
-    "server:build": "npm run build ./server"
+    "server:build": "npm run build --prefix ./server",
+    "client:prod": "npx serve -s client/build",
+    "server:prod": "npm run start:prod --prefix ./server"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "serve": "^14.2.0",
     "concurrently": "^7.6.0"
   }
 }
