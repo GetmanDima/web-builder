@@ -5,6 +5,10 @@
 - MongoDB [MongoDB: The Developer Data Platform | MongoDB](https://www.mongodb.com/)
 
 - RabbitMQ [Messaging that just works — RabbitMQ](https://www.rabbitmq.com/)
+## Установка зависимостей
+```bash
+npm install
+```
 ## Запуск dev версии
 ```bash
 npm run dev
