@@ -6,6 +6,7 @@
 
 - RabbitMQ [Messaging that just works — RabbitMQ](https://www.rabbitmq.com/)
 ## Установка зависимостей
+В корневой директории, в директории client, в директории server:
 ```bash
 npm install
 ```
