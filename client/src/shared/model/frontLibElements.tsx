@@ -3,20 +3,20 @@ import WidgetsIcon from "@mui/icons-material/Widgets";
 
 const blockElement: LibElement = {
   id: 1,
-  title: "Блок(временный)",
+  title: "Блок",
   img: <WidgetsIcon />,
   elements: {
     1: {
       id: 1,
-      name: "block(temp)",
+      name: "empty",
       type: "element",
-      allowedEvents: ["onClick"],
-      allowedParams: ["text"],
+      allowedEvents: [],
+      allowedParams: [],
       startCode: "",
       finishCode: "",
       wrapperCode: "() => {return {{element}}}",
       template: `
-        <div bind-style="{{style}}">{{{params.text}}}<div>{{children}}</div></div>
+        <div bind-style="{{style}}">{{children}}</div>
       `,
       withChildren: true,
       children: [2],
@@ -36,10 +36,7 @@ const blockElement: LibElement = {
         },
       },
       events: {
-        onClick: {
-          name: "onClick",
-          actions: [],
-        },
+    
       },
     },
     2: {
@@ -640,10 +637,101 @@ const conditionElement: LibElement = {
         },
       },
       params: {
+        data: {
+          name: "data",
+          source: "json",
+          value: "true",
+        },
+      },
+      config: {},
+    },
+  },
+  elementId: 1,
+};
+
+const imgElement: LibElement = {
+  id: 12,
+  title: "Изображение",
+  img: <WidgetsIcon />,
+  elements: {
+    1: {
+      id: 1,
+      name: "image",
+      type: "element",
+      allowedParams: ["src"],
+      allowedEvents: [],
+      startCode: "",
+      finishCode: "",
+      wrapperCode: `() => {       
+        return {{element}};
+      }`,
+      template: `
+        <img bind-style="{{style}}" bind-src="{{src}}" />
+      `,
+      withChildren: false,
+      children: [],
+      style: {
+        width: {
+          source: "string",
+          value: "50px",
+        },
+        height: {
+          source: "string",
+          value: "50px",
+        }
+      },
+      params: {
         arr: {
           name: "data",
           source: "json",
           value: "true",
+        },
+      },
+      config: {},
+    },
+  },
+  elementId: 1,
+};
+
+const selectElement: LibElement = {
+  id: 13,
+  title: "Выбор",
+  img: <WidgetsIcon />,
+  elements: {
+    1: {
+      id: 1,
+      name: "select",
+      type: "element",
+      allowedParams: ["defaultValue", "options"],
+      allowedEvents: ["onChange"],
+      startCode: "",
+      finishCode: "",
+      wrapperCode: `() => {       
+        return {{element}};
+      }`,
+      template: `
+        <antd.Select 
+          bind-defaultValue="{{params.defaultValue}}" 
+          bind-options="{{params.options}}"
+          bind-style="{{style}}"
+          bind-onChange="{{events.onChange}}"
+        />
+      `,
+      withChildren: false,
+      children: [],
+      style: {
+
+      },
+      params: {
+        defaultValue: {
+          name: "defaultValue",
+          source: "string",
+          value: "",
+        },
+        options: {
+          name: "options",
+          source: "json",
+          value: "[]",
         },
       },
       config: {},
@@ -664,4 +752,6 @@ export const frontLibElements: LibElement[] = [
   colLayoutElement,
   cycleElement,
   conditionElement,
+  imgElement,
+  selectElement
 ];

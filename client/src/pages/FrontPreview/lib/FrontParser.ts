@@ -24,13 +24,6 @@ export class FrontParser extends BaseParser {
 
     return `
       (() => {
-        if (window.localStorage) {
-          delete window.localStorage;
-        }
-        if (window.cookieStore) {
-          delete window.cookieStore;
-        }
-        document.cookie = '';
         const baseUrl = '/projects/${this.projectId}/preview/';
         
         ${globalStateCode}

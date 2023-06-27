@@ -5,6 +5,7 @@ import { FrontPages } from "./FrontPages/FrontPages";
 import { Projects } from "./Projects/Projects";
 import { Db } from "./Db/Db";
 import { Api } from "./Api/Api";
+import { FileStorage } from "./FileStorage/FileStorage";
 
 const FrontPageEditor = lazy(() => import(/* webpackChunkName: "FrontPageEditor" */ "./FrontPageEditor"));
 const FrontPreview = lazy(() => import(/* webpackChunkName: "FrontPreview" */ "./FrontPreview"));
@@ -44,5 +45,9 @@ export const authRoutes = [
   {
     path: "/projects/:projectId/preview/*",
     element: <FrontPreview />,
+  },
+  {
+    path: "/storage",
+    element: <FileStorage />,
   },
 ];

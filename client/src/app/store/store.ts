@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { userAPI, projectAPI } from "@shared/api";
+import { userAPI, projectAPI, fileAPI } from "@shared/api";
 import { frontReducer } from "@entities/Front";
 import { userReducer } from "@entities/User";
 import { pageReducer } from "@entities/Page";
@@ -19,12 +19,13 @@ const rootReducer = combineReducers({
   api: apiReducer,
   [userAPI.reducerPath]: userAPI.reducer,
   [projectAPI.reducerPath]: projectAPI.reducer,
+  [fileAPI.reducerPath]: fileAPI.reducer,
 });
 
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(userAPI.middleware, projectAPI.middleware),
+    getDefaultMiddleware().concat(userAPI.middleware, projectAPI.middleware, fileAPI.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

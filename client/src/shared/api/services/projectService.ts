@@ -114,5 +114,18 @@ export const projectAPI = createApi({
         }
       },
     }),
+    generateCode: build.mutation<{}, {projectId: string}>({
+      query: (data) => ({
+        url: `/projects/${data.projectId}/code`,
+        method: "POST",
+      }),
+      async onQueryStarted(request, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+        } catch {
+          dispatch(setError("Произошла ошибка при генерации кода"));
+        }
+      },
+    }),
   }),
 });

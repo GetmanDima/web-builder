@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import * as express from 'express';
+import { join } from 'path';
 import { AppModule } from './app/app.module';
 import { RMQModule } from './rmq/rmq.module';
 
@@ -12,8 +14,8 @@ async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
     app.useGlobalPipes(new ValidationPipe());
-
     app.enableCors();
+    app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
 
     await app.listen(PORT, () => {
       console.log(`Server started on port ${PORT}`);

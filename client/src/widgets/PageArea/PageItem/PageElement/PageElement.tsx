@@ -15,15 +15,25 @@ const pageElementParser = new PageElementParser();
 
 export const PageElement = ({ element, selectElement }: PageElementProps) => {
   const [parsedElement, setParsedElement] = useState<ParsedElement>();
+  const [error, setError] = useState('');
 
   useEffect(() => {
     pageElementParser.parse(element).then((res) => {
       setParsedElement(res);
+      setError('');
+    }).catch(() => {
+      setError('Error. check parameters, styles, events!');
     })
   }, [element]);
 
   if (!parsedElement) {
     return null;
+  }
+
+  if (error) {
+    return (
+      <h3 className="text-[18px]">{error}</h3>
+    )
   }
 
   return convertParsedToElement(element, parsedElement, selectElement);

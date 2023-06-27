@@ -1,3 +1,4 @@
 import { userAPI } from "./services/userService";
 import { projectAPI } from "./services/projectService";
-export {userAPI, projectAPI};
+import { fileAPI } from "./services/fileService";
+export {userAPI, projectAPI, fileAPI};

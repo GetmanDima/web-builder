@@ -18,8 +18,6 @@ export const PageItem = ({ element, selectElement }: PageItemProps) => {
   const dispatch = useAppDispatch();
   const [settingsVisible, setSettingsVisible] = useState(false);
 
-  //const width = element.style?.width?.value ?? "auto";
-
   return (
     <div
       className='relative hover:border hover:border-black'
